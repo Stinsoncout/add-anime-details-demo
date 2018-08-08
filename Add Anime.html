@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8" />
+
+    <title>Add Anime</title>
+
+    <link type="text/css" rel="stylesheet" href="./Add Anime.css">
+
+    <script src="./Add Anime.js"></script>
+</head>
+
+<body>
+    <label>Name* : </label>
+    <input id="name" type="text" placeholder="Namae!!" autofocus onkeyup="if (event.keyCode === 13) addNameTag(this.value)" onblur="checkValidName(this.value)"
+    />
+    <br />
+    <br />
+
+    <label>Alternate Names : </label>
+    <input id="altname" type="text" placeholder="" onkeyup="if (event.keyCode == 13) addAlternateTag(this.value)" />
+    <br />
+    <br />
+
+    <label>Franchise : </label>
+    <input id="franchise" type="text" placeholder="" onkeyup="if (event.keyCode === 13) addFranchiseTag(this.value)" />
+    <br />
+    <br />
+
+    <div id="related_collection" style="height: auto;">
+        <label>Related : </label>
+        <select id="related" onchange="checkDisplay(this.value)">
+            <option value="" selected>N/A</option>
+            <option value="prequel">Prequel</option>
+            <option value="sequel">Sequel</option>
+            <option value="movies">Movie</option>
+            <option value="spin_offs">Spin-off</option>
+            <option value="mangas">Manga</option>
+            <option value="others">Other</option>
+            <option value="done">Done</option>
+        </select>
+        <input id="related_value" type="text" style="display: none;" placeholder="N/A" onkeyup="if (event.keyCode == 13) addRelatedTag(this.value)"
+        />
+        <br />
+        <br />
+    </div>
+    <br />
+    <br />
+
+    <label>Type : </label>
+    <select id="type" onchange="addTypeTag(this.value)">
+        <option value="" selected>N/A</option>
+        <option value="tv">TV</option>
+        <option value="ova">OVA/OAV</option>
+        <option value="ona">ONA/OAN</option>
+        <option value="oda">ODA</option>
+        <option value="movie">Movie</option>
+        <option value="unknown">Unknown</option>
+    </select>
+    <br />
+    <br />
+
+    <label>Tags : </label>
+    <br />
+    <br />
+    <div id="tag_repository" style="width: 60%; height: auto; border: 1px solid black; min-height: 200px;">
+        <ul id="tags" style="margin: 0; padding: 5px; display: flex;"></ul>
+    </div>
+    <br />
+
+    <button type="submit">Add Anime</button>
+</body>
+
+</html>

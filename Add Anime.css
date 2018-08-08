@@ -1,0 +1,84 @@
+/* style for general tags */
+
+.tag {
+    height: 20px;
+    width: auto;
+    color: white;
+    background-color: #FF761C;
+    border: 1px solid #FF761C;
+    border-radius: 20px;
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 0px 5px 5px 0px;
+}
+
+.tag:hover {
+    cursor: default;
+}
+
+/* style for anime title/name */
+
+.name_tag {
+    height: 20px;
+    width: auto;
+    color: white;
+    background-color: #A0A;
+    border: 1px solid #A0A;
+    border-radius: 20px;
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 0px 5px 5px 0px;
+}
+
+.name_tag:hover {
+    cursor: default;
+}
+
+/* style for alternate anime names */
+
+.alt_tag {
+    height: 20px;
+    width: auto;
+    color: white;
+    background-color: #F0F;
+    border: 1px solid #F0F;
+    border-radius: 20px;
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 0px 5px 5px 0px;
+}
+
+.alt_tag:hover {
+    cursor: default;
+}
+
+/* style for anime franchise */
+
+.franchise_tag {
+    height: 20px;
+    width: auto;
+    color: white;
+    background-color: #0A0;
+    border: 1px solid #0A0;
+    border-radius: 20px;
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 0px 5px 5px 0px;
+}
+
+.franchise_tag:hover {
+    cursor: default;
+}
+
+/* style for remove button */
+
+.remove {
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bolder;
+    padding: 0px 0px 0px 5px;
+}
+
+.remove:hover {
+    cursor: pointer;
+}
