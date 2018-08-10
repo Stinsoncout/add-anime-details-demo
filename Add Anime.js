@@ -2,6 +2,7 @@
 var nameFlag = false;
 var franchiseFlag = false;
 var rel_na = true;
+var type_na = true;
 
 // comparison variables
 var setName = "";
@@ -247,7 +248,7 @@ var addFranchiseTag = function (franchise) {
 
         // set focus to next field
         document.getElementById("franchise").blur();
-        // document.getElementById("").focus();
+        document.getElementById("related").focus();
 
         // remove franchise tag
         span.onclick = function () {
@@ -378,14 +379,55 @@ var addRelatedTag = function (rel_value) {
 // add type tag
 var addTypeTag = function (type) {
     // CASE 1 : Type is known
+    // TO DO : Add type tag and shift focus to next field
     if (type != "unknown") {
+        // convert type to type tag
+        var typeTag = type.toLowerCase().replace(/[&\/\\#,+()$~%.'":;*?<>{}^]/g, " ").replace(/-/g, " ")
+            .replace(/ +$/, "").replace(/  +/g, " ").split(" ").join("_");
 
+        // add type tag to tag repository
+        // create type-tag-li
+        var node = document.createElement("LI");
+        var textNode = document.createTextNode(typeTag);
+        node.appendChild(textNode);
+        node.id = "type_tag_li";
+        node.classList.add("tag");
+        node.title = document.getElementById("type").options[document.getElementById("type").selectedIndex].text + " (Type Tag)";
+        // add remove option to type-tag-li
+        var span = document.createElement("SPAN");
+        var cross = document.createTextNode("\u00D7");
+        span.appendChild(cross);
+        span.id = "remove_type_tag_li";
+        span.classList.add("remove");
+        node.appendChild(span);
+        // add type-tag-li to tag repository
+        document.getElementById("tags").appendChild(node);
+
+        // set tags in order
+        checkOrder();
+
+        // set focus to next field
+        document.getElementById("type").blur();
+        // document.getElementById("").focus();
+
+        // remove type tag
+        span.onclick = function () {
+            node.parentNode.removeChild(node);
+
+            // set all tags in order
+            checkOrder();
+
+            // set focus to franchise field
+            document.getElementById("type").focus();
+        }
     }
 
-    // CASE 2 : 
-    // TO DO :
+    // CASE 2 : Type is unknown 
+    // TO DO : Shift focus to next field
     else if (type == "unknown") {
-
+        // set focus to next field
+        document.getElementById("type").blur();
+        // document.getElementById("").focus();        
     }
 
     // remove N/A
@@ -415,5 +457,13 @@ var checkOrder = function () {
     // franchise tag
     if (document.getElementById("franchise_tag_li")) {
         document.getElementById("franchise_tag_li").style.order = ++order;
+    }
+
+    // related tags
+
+
+    // type tag
+    if (document.getElementById("type_tag_li")) {
+        document.getElementById("type_tag_li").style.order = ++order;
     }
 }
