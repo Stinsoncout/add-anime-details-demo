@@ -61,6 +61,75 @@
     <br />
     <br />
 
+    <label>Score : </label>
+    <br />
+    <br />
+    <div style="margin-left: 20px;">
+        <label>MAL : </label>
+        <input id="mal" type="number" min="0.00" step="0.01" max="10.00" placeholder="N/A" onkeyup="if(event.keyCode === 13) addMALScore(this.value)"
+        />
+        <br />
+        <br />
+
+        <label>IMDB : </label>
+        <input id="imdb" type="number" min="0.0" step="0.1" max="10.0" placeholder="N/A" onkeyup="if(event.keyCode === 13) addIMDBScore(this.value)"
+        />
+        <br />
+        <br />
+    </div>
+
+    <label>Season Details : </label>
+    <br />
+    <br />
+    <div style="margin-left: 20px;">
+        <label>Total Seasons : </label>
+        <input id="total_seasons" type="number" min="1" step="1" placeholder="N/A" />
+        <br />
+        <br />
+
+        <label>Season Number : </label>
+        <input id="season_number" type="number" min="1" step="1" placeholder="N/A" />
+        <br />
+        <br />
+
+        <label>Episodes : </label>
+        <input id="episodes" type="number" min="0" step="1" placeholder="N/A" onkeyup="if (event.keyCode === 13) setMaxEps(this.value)"
+        />
+        <br />
+        <br />
+    </div>
+
+    <label>Filler Details : </label>
+    <br />
+    <br />
+    <div style="margin-left: 20px;">
+        <label>Canon : </label>
+        <input id="canon" type="number" min="0" step="1" placeholder="N/A" onkeyup="if(event.keyCode === 13) setFiller(this.value, this.max)"
+        />
+        <br />
+        <br />
+
+        <label>Filler : </label>
+        <input id="filler" type="number" min="0" step="1" placeholder="N/A" onkeyup="if (event.keyCode === 13) setCanon(this.value, this.max)"
+        />
+        <br />
+        <br />
+
+        <label>Filler Ratio : </label>
+        <span id="filler_ratio"></span>
+        <br />
+        <br />
+
+        <label>Filler Rating : </label>
+        <span id="filler_rating"></span>
+        <br />
+        <br />
+
+        <label>Filler Episodes : </label>
+        <br />
+        <br />
+    </div>
+
     <label>Tags : </label>
     <br />
     <br />
