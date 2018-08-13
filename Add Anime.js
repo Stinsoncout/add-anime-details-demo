@@ -8,6 +8,8 @@ var type_na = true;
 var setName = "";
 var setAlt = [];
 var setFranchise = "";
+var fillerRatio = 0;
+var fillerRating = "Nil";
 
 // add name tag
 var addNameTag = function (name) {
@@ -361,7 +363,7 @@ var checkDisplay = function (value) {
     else if (value == "done") {
         // set focus to next field
         document.getElementById("related").blur();
-        document.getElementById("type").focus();    
+        document.getElementById("type").focus();
     }
 
     // remove N/A
@@ -408,7 +410,7 @@ var addTypeTag = function (type) {
 
         // set focus to next field
         document.getElementById("type").blur();
-        // document.getElementById("").focus();
+        document.getElementById("mal").focus();
 
         // remove type tag
         span.onclick = function () {
@@ -435,6 +437,143 @@ var addTypeTag = function (type) {
         document.getElementById("type").options[0].remove();
         type_na = false;
     }
+}
+
+// add MAL score
+var addMALScore = function (mal) {
+    // CASE 1 : Valid MAL score provided
+    // TO DO : Add MAL score tag
+    if (mal > 0 && mal <= 10) {
+        // add mal tag to tag repository
+        // create mal-tag-li
+        var node = document.createElement("LI");
+        var textNode = document.createTextNode(mal);
+        node.appendChild(textNode);
+        node.id = "mal_tag_li";
+        node.classList.add("tag");
+        node.title = mal + " (MAL Score Tag)";
+        // add remove option to mal-tag-li
+        var span = document.createElement("SPAN");
+        var cross = document.createTextNode("\u00D7");
+        span.appendChild(cross);
+        span.id = "remove_mal_tag_li";
+        span.classList.add("remove");
+        node.appendChild(span);
+        // add mal-tag-li to tag repository
+        document.getElementById("tags").appendChild(node);
+
+        // set tags in order
+        checkOrder();
+
+        // set focus to next field
+        document.getElementById("mal").blur();
+        document.getElementById("imdb").focus();
+
+        // remove mal tag
+        span.onclick = function () {
+            node.parentNode.removeChild(node);
+
+            // set all tags in order
+            checkOrder();
+
+            // set focus to franchise field
+            document.getElementById("mal").focus();
+        }
+    }
+
+    // CASE 2 : Invalid MAL score provided
+    // TO DO : Display error message
+    else {
+        console.log("Value out of range!");
+    }
+}
+
+// add IMDB score
+var addIMDBScore = function (imdb) {
+    // CASE 1 : Valid MAL score provided
+    // TO DO : Add MAL score tag
+    if (imdb > 0 && imdb <= 10) {
+        // add imdb tag to tag repository
+        // create imdb-tag-li
+        var node = document.createElement("LI");
+        var textNode = document.createTextNode(imdb);
+        node.appendChild(textNode);
+        node.id = "imdb_tag_li";
+        node.classList.add("tag");
+        node.title = imdb + " (IMDB Score Tag)";
+        // add remove option to imdb-tag-li
+        var span = document.createElement("SPAN");
+        var cross = document.createTextNode("\u00D7");
+        span.appendChild(cross);
+        span.id = "remove_imdb_tag_li";
+        span.classList.add("remove");
+        node.appendChild(span);
+        // add imdb-tag-li to tag repository
+        document.getElementById("tags").appendChild(node);
+
+        // set tags in order
+        checkOrder();
+
+        // set focus to next field
+        document.getElementById("imdb").blur();
+        // document.getElementById("").focus();
+
+        // remove imdb tag
+        span.onclick = function () {
+            node.parentNode.removeChild(node);
+
+            // set all tags in order
+            checkOrder();
+
+            // set focus to franchise field
+            document.getElementById("imdb").focus();
+        }
+    }
+
+    // CASE 2 : Invalid IMDB score provided
+    // TO DO : Display error message
+    else {
+        console.log("Value out of range!");
+    }
+}
+
+// set maximum number of episodes
+var setMaxEps = function (maxEps) {
+    if (maxEps > 0) {
+        document.getElementById("canon").max = maxEps;
+        document.getElementById("filler").max = maxEps;
+    }
+
+    else {
+        document.getElementById("canon").max = Infinity;
+        document.getElementById("filler").max = Infinity;
+    }
+}
+
+// add filler details
+var setFiller = function (canon, maxEps) {
+    // set filler episodes
+    var filler = maxEps - canon;
+    document.getElementById("filler").value = filler;
+
+    // set filler ratio
+    fillerRatio = (filler * 100)/maxEps;
+    document.getElementById("filler_ratio").innerHTML = fillerRatio;
+
+    // set filler rating
+
+    // add filler tags
+    setFillerTags(fillerRatio, fillerRating);
+}
+
+// add filler detail tags
+var setCanon = function (filler, maxEps) {
+    document.getElementById("canon").value = maxEps - filler;
+}
+
+// add filler tags
+var setFillerTags = function (fillerRatio, fillerRating) {
+
 }
 
 // set all tags in order
@@ -465,5 +604,15 @@ var checkOrder = function () {
     // type tag
     if (document.getElementById("type_tag_li")) {
         document.getElementById("type_tag_li").style.order = ++order;
+    }
+
+    // mal tag
+    if (document.getElementById("mal_tag_li")) {
+        document.getElementById("mal_tag_li").style.order = ++order;
+    }
+
+    // imdb tag
+    if (document.getElementById("imdb_tag_li")) {
+        document.getElementById("imdb_tag_li").style.order = ++order;
     }
 }
